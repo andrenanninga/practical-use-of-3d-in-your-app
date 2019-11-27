@@ -1,0 +1,19 @@
+{
+  "name": "practical-use-of-3d-in-your-app",
+  "author": "André Nanninga",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "mdx-deck build deck.mdx",
+    "dev": "now dev",
+    "deploy": "now deploy --target production"
+  },
+  "dependencies": {
+    "react-spring": "^8.0.27",
+    "react-three-fiber": "^3.0.14",
+    "three": "^0.110.0"
+  },
+  "devDependencies": {
+    "code-surfer": "3.0.0-beta.1",
+    "mdx-deck": "3.0.13"
+  }
+}

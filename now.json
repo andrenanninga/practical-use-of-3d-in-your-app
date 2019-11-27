@@ -1,0 +1,15 @@
+{
+  "name": "practical-use-of-3d-in-your-app",
+  "version": 2,
+  "builds": [
+    { "src": "assets/**/*.*", "use": "@now/static" },
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": {
+        "distDir": "public"
+      }
+    }
+  ],
+  "routes": [{ "src": "^/([0-9]+)$", "dest": "/" }]
+}

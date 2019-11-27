@@ -1,0 +1,406 @@
+import { CodeSurfer } from "code-surfer";
+import { Stage as BoxStage } from "./components/Box";
+import { Stage as StatueStage } from './components/Statue'
+import { Stage as DetailsStage } from './components/Details'
+
+export const assets = '/assets'
+
+
+## Practical use of 3D in your app
+
+🇳🇱 André Nanninga
+
+<a href="https://twitter.com/andrenanninga" style={{ fontSize: '30px'}}>@AndreNanninga</a>
+
+---
+
+## 🕹 Games and experiments
+
+
+<div style={{ display: 'flex', flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', height: '10vh', width: '100vw' }}>
+  ​<video style={{ objectFit: 'cover' }} autoPlay loop width="33.333%" height="50%" src={`${assets}/show-off/dungeon.mp4`} />
+  ​<video style={{ objectFit: 'cover' }} autoPlay loop width="33.333%" height="50%" src={`${assets}/show-off/skeletons.mp4`} />
+  ​<video style={{ objectFit: 'cover' }} autoPlay loop width="33.333%" height="50%" src={`${assets}/show-off/coin-flip.mp4`} />
+  ​<video style={{ objectFit: 'cover' }} autoPlay loop width="33.333%" height="50%" src={`${assets}/show-off/snake-charmer.mp4`} />
+  ​<video style={{ objectFit: 'cover' }} autoPlay loop width="33.333%" height="50%" src={`${assets}/show-off/tomb-raider.mp4`} />
+  ​<video style={{ objectFit: 'cover' }} autoPlay loop width="33.333%" height="50%" src={`${assets}/show-off/train-ride.mp4`} />
+</div>
+
+<Notes>
+
+- Small games, experiments
+- Port Tomb Raider to the browser
+- Mixture of 2D and 3D
+- All in three.js
+
+</Notes>
+
+---
+
+## 🧱 three.js 
+
+<div style={{ display: 'flex', flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', height: '10vh', width: '100vw' }}>
+  <video autoPlay loop width="33.3333%" height="50%" style={{ objectFit: 'cover' }} src={`${assets}/three-js/ff-91.mp4`} />
+  <video autoPlay loop width="33.3333%" height="50%" style={{ objectFit: 'cover' }} src={`${assets}/three-js/bruno-simon.mp4`} />
+  <video autoPlay loop width="33.3333%" height="50%" style={{ objectFit: 'cover' }} src={`${assets}/three-js/wipeout.mp4`} />
+  <video autoPlay loop width="33.3333%" height="50%" style={{ objectFit: 'cover' }} src={`${assets}/three-js/maps-cube.mp4`} />
+  <video autoPlay loop width="33.3333%" height="50%" style={{ objectFit: 'cover' }} src={`${assets}/three-js/infinitown.mp4`} />
+  <video autoPlay loop width="33.3333%" height="50%" style={{ objectFit: 'cover' }} src={`${assets}/three-js/roberta-di-camerino.mp4`} />
+</div>
+
+<Notes>
+
+- 3D
+- Cool interactive experiments
+- Mostly standalone
+
+</Notes>
+
+---
+
+## 🧵 react-three-fiber
+
+<div style={{ display: 'flex', flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', height: '10vh', width: '100vw' }}>
+  <img width="33.3333%" height="50%" src={`${assets}/react-three-fiber/falling-cubes.gif`} />
+  <img width="33.3333%" height="50%" src={`${assets}/react-three-fiber/space-shooter.gif`} />
+  <img width="33.3333%" height="50%" src={`${assets}/react-three-fiber/train-seats.gif`} />
+  <img width="33.3333%" height="50%" src={`${assets}/react-three-fiber/moving-thing.gif`} />
+  <img width="33.3333%" height="50%" src={`${assets}/react-three-fiber/learn-with-jason.gif`} />
+  <img width="33.3333%" height="50%" src={`${assets}/react-three-fiber/fiber-flamingos.gif`} />
+</div>
+
+<Notes>
+
+- Integrate with react
+- Make it practical
+
+</Notes>
+
+---
+
+## 📦 Let's make a box
+
+<BoxStage />
+
+---
+
+<CodeSurfer>
+
+```js 1:16,19:28 file=./components/Box.js title="Let's make a box"
+```
+
+```js 3,6:15,19:21 file=./components/Box.js title="Let's make a box" subtitle="Set the stage"
+```
+
+```js 16,23:27 file=./components/Box.js title="Let's make a box" subtitle="Add a static box"
+```
+
+```js title="react-three-fiber vs three.js"
+// react-three-fiber
+
+<mesh>
+  <boxGeometry attach="geometry" args={[1, 1, 1]} />
+  <meshNormalMaterial attach="material" />
+</mesh>
+
+
+
+
+
+// three.js
+
+const mesh = new THREE.Mesh();
+mesh.geometry = new THREE.BoxGeometry(1, 1, 1);
+mesh.material = new THREE.MeshNormalMaterial();
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- Canvas renders three.js elements, _not_ DOM elements
+- Camera by default hangs over the center of the scene looking down
+- Set the position of the camera and point it at the center of the scene
+
+</Notes>
+
+---
+
+## 🏐 Let's make a rotating box
+
+<BoxStage />
+
+---
+
+<CodeSurfer>
+
+```js 17 file=./components/Box.js title="Let's make a rotating box" subtitle="Add the box to our scene"
+```
+
+```js 30:52 file=./components/Box.js title="Let's make a rotating box" subtitle="Define the component"
+```
+
+```js 32,44,45 file=./components/Box.js title="Let's make a rotating box" subtitle="Start rotating on hover"
+```
+
+```js 31,43 file=./components/Box.js title="Let's make a rotating box" subtitle="Keep a reference to the mesh"
+```
+
+```js 34:39 file=./components/Box.js title="Let's make a rotating box" subtitle="Update the rotation every frame"
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- useFrame uses useContext so it needs to be in a child component of `<Canvas />`
+- useFrame is called every frame (60 fps)
+- ref.current contains the three.js instance of the cube
+
+</Notes>
+
+---
+
+## 🐍 Let's make a jumping box
+
+<BoxStage />
+
+---
+
+<CodeSurfer>
+
+```js 18 file=./components/Box.js title="Let's make a jumping box" subtitle="Add the box to our scene"
+```
+
+```js 54:71 file=./components/Box.js title="Let's make a jumping box" subtitle="Define the component"
+```
+
+```js 55:58 file=./components/Box.js title="Let's make a jumping box" subtitle="Set position based on state"
+```
+
+```js 62:65 file=./components/Box.js title="Let's make a jumping box" subtitle="Animated mesh, change jump state"
+```
+
+```js 4 file=./components/Box.js title="Let's make a jumping box" subtitle="React-spring/three import"
+```
+
+</CodeSurfer>
+
+---
+
+## 📦 Let's make a box
+
+<BoxStage />
+
+---
+
+## 🐕 Let's make it more interesting
+
+<StatueStage />
+
+<Notes>
+
+- Statue of a Hunter
+- Konopiště Castle, 1 hour from Prague
+- Daniel Sklar
+
+</Notes>
+
+---
+
+## 🕵️‍♀️ Finding a model
+
+<img src="https://i.imgur.com/FyK27Qd.png" />
+
+<Notes>
+
+- Sketchfab
+- Tons of freely downloadable models
+- Higher quality models for sale
+- Download as GLTF file
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```js 10:52 file=./components/Statue.js title="Statue of a Hunter"
+```
+
+```js 20:32 file=./components/Statue.js title="Statue of a Hunter" subtitle="Add some lights"
+```
+
+```js 34:40 file=./components/Statue.js title="Statue of a Hunter" subtitle="Adding the statue"
+```
+
+```js 36 file=./components/Statue.js title="Statue of a Hunter" subtitle="Loading binary including model and textures"
+```
+
+```js 44:52 file=./components/Statue.js title="Statue of a Hunter" subtitle="Loading the model"
+```
+
+```js 34 file=./components/Statue.js title="Statue of a Hunter" subtitle="Spinner mesh"
+```
+
+```js 54:69 file=./components/Statue.js title="Statue of a Hunter" subtitle="Spinner mesh"
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- Without lighting just black statue
+- React.Suspense for loading statue
+- Fallback can be another mesh
+- GLTFLoader is from three.js
+- scene can contain animations, lights, cameras, multiple meshes
+
+</Notes>
+
+---
+
+## 🎥 Making it interactive
+
+<DetailsStage />
+
+<Notes>
+
+- Combine React and Three.js
+- Update based on state
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```js 1:78 file=./components/Details.js title="Make it interactive"
+```
+
+```js 26:55 file=./components/Details.js title="Make it interactive" subtitle="Same as before"
+```
+
+```js 12:16,19 file=./components/Details.js title="Make it interactive" subtitle="Focus on a feature of the statue"
+```
+
+```js 12:16,19,21:24 file=./components/Details.js title="Make it interactive" subtitle="Position camera based on focus"
+```
+
+```js 21,29 file=./components/Details.js title="Make it interactive" subtitle="Pass position to camera"
+```
+
+```js 58:78 file=./components/Details.js title="Make it interactive" subtitle="Custom camera object"
+```
+
+```js 72:76 file=./components/Details.js title="Make it interactive" subtitle="Animated camera"
+```
+
+```js 66:69 file=./components/Details.js title="Make it interactive" subtitle="Keep camera pointed at center"
+```
+
+```js 62:64 file=./components/Details.js title="Make it interactive" subtitle="Set as default camera"
+```
+
+```js 80:114 file=./components/Details.js title="Make it interactive" subtitle="Controls"
+```
+
+```js 90,91,98,99,106,107 file=./components/Details.js title="Make it interactive" subtitle="Switching focus"
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- Focus on 'statue', 'hunter' or 'dog'
+- set position based on Focus
+- Pass position to camera
+- Custom camera component to control position
+- Call `camera.lookAt` every frame
+
+</Notes>
+
+---
+
+## 🎥 Making it interactive
+
+<DetailsStage />
+
+---
+
+## 🤬
+
+Some things are still difficult or impossible
+
+\- Text
+
+\- Responsiveness
+
+\- Accessibility
+
+\- Native elements
+
+
+<Notes>
+
+- Fonts need to be converted, create mesh out of font shapes
+- Or render to canvas and use as texture
+- Interaction within the 3d world
+- No native or dom elements within the stage
+- Accessibility
+- Responsiveness, keeping everything in view
+
+</Notes>
+
+---
+
+## 👨‍🚀 Out of the box solutions 🤡
+
+model-viewer / sketchfab
+
+<div style={{ display: 'flex', flex: 1, overflow: 'hidden', flexDirection: 'row' }}>
+  <iframe
+    style={{ height: '100%',width: '50vw' }}
+    src="https://poly.google.com/view/dLHpzNdygsg/embed"
+    frameborder="0"
+    scrolling="no"
+    allow="autoplay;"
+  />
+  <iframe
+    title="A 3D model"
+    src="https://sketchfab.com/models/bb896a1ddaaa46d4bd17d147d0decd8c/embed?autospin=1&autostart=1&annotations_visible=0&ui_stop=1&camera=0"
+    frameborder="0"
+    allow="autoplay; fullscreen; vr"
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    style={{ height: '100%',width: '50vw' }}
+  />
+</div>
+
+<Notes>
+
+- *model viewer*
+- Open source
+- Google
+- WebComponent
+- https://poly.google.com/
+- *Sketchfab embed*
+- premium features (remove watermark, annotation, transparency)
+
+</Notes>
+
+---
+
+## 🙏 Made possible by
+
+https://github.com/react-spring
+
+https://threejs.org/
+
+---
+
+## 👋 Thank you very much!
+
+🇳🇱 André Nanninga
+
+<a href="https://twitter.com/andrenanninga" style={{ fontSize: '30px'}}>@AndreNanninga</a>
