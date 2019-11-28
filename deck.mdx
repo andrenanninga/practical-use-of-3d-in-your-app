@@ -210,7 +210,7 @@ mesh.material = new THREE.MeshNormalMaterial();
 
 ## 🕵️‍♀️ Finding a model
 
-<img src="https://i.imgur.com/FyK27Qd.png" />
+<img src={`${assets}/sketchfab/statue-of-a-hunter.png`} />
 
 <Notes>
 
@@ -328,72 +328,9 @@ mesh.material = new THREE.MeshNormalMaterial();
 
 ---
 
-## 🤬
-
-Some things are still difficult or impossible
-
-\- Text
-
-\- Responsiveness
-
-\- Accessibility
-
-\- Native elements
-
-
-<Notes>
-
-- Fonts need to be converted, create mesh out of font shapes
-- Or render to canvas and use as texture
-- Interaction within the 3d world
-- No native or dom elements within the stage
-- Accessibility
-- Responsiveness, keeping everything in view
-
-</Notes>
-
----
-
-## 👨‍🚀 Out of the box solutions 🤡
-
-model-viewer / sketchfab
-
-<div style={{ display: 'flex', flex: 1, overflow: 'hidden', flexDirection: 'row' }}>
-  <iframe
-    style={{ height: '100%',width: '50vw' }}
-    src="https://poly.google.com/view/dLHpzNdygsg/embed"
-    frameborder="0"
-    scrolling="no"
-    allow="autoplay;"
-  />
-  <iframe
-    title="A 3D model"
-    src="https://sketchfab.com/models/bb896a1ddaaa46d4bd17d147d0decd8c/embed?autospin=1&autostart=1&annotations_visible=0&ui_stop=1&camera=0"
-    frameborder="0"
-    allow="autoplay; fullscreen; vr"
-    mozallowfullscreen="true"
-    webkitallowfullscreen="true"
-    style={{ height: '100%',width: '50vw' }}
-  />
-</div>
-
-<Notes>
-
-- *model viewer*
-- Open source
-- Google
-- WebComponent
-- https://poly.google.com/
-- *Sketchfab embed*
-- premium features (remove watermark, annotation, transparency)
-
-</Notes>
-
----
-
 ## 🙏 Made possible by
 
-https://github.com/react-spring
+https://github.com/react-spring/react-three-fiber
 
 https://threejs.org/
 
@@ -404,3 +341,8 @@ https://threejs.org/
 🇳🇱 André Nanninga
 
 <a href="https://twitter.com/andrenanninga" style={{ fontSize: '30px'}}>@AndreNanninga</a>
+
+<span style={{ fontSize: '25px', marginTop: '40px' }}>
+  <a href="https://practical-3d.nannin.ga">practical-3d.nannin.ga</a>{' | '}
+  <a href="https://github.com/andrenanninga/practical-use-of-3d-in-your-app">repo</a>
+</span>
