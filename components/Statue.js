@@ -46,7 +46,7 @@ const Asset = ({ url, ...props }) => {
 
   return (
     <group {...props}>
-      <primitive object={gltf.scene} />;
+      <primitive object={gltf.scene.clone(true)} />
     </group>
   );
 };
